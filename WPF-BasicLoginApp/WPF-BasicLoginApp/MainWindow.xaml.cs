@@ -20,9 +20,63 @@ namespace WPF_BasicLoginApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        Button Button_Login;
+        TextBox TextBox_Name;
+        TextBox TextBox_Password;
+        Label Label_Name;
+        Label Label_Password;
+
         public MainWindow()
         {
             InitializeComponent();
+            GenerateControls();
+        }
+
+        private void LoginClicked(object sender, RoutedEventArgs e)
+        {
+            if (TextBox_Password.Text.Length > 6)
+            {
+
+            }
+        }
+
+        private void GenerateControls()
+        {
+            Button_Login = new Button();
+            TextBox_Name = new TextBox();
+            TextBox_Password = new TextBox();
+            Label_Name = new Label();
+            Label_Password = new Label();
+
+            Button_Login.Content = "Login";
+            Button_Login.Width = 60;
+            Button_Login.Height = 30;
+            Button_Login.Margin = new Thickness(0,100,0,0);
+            Button_Login.Click += new RoutedEventHandler(LoginClicked);
+
+            TextBox_Name.Width = 130;
+            TextBox_Name.Height = 25;
+            TextBox_Name.Margin = new Thickness(40,-100, 0, 0);
+
+            TextBox_Password.Width = 130;
+            TextBox_Password.Height = 25;
+            TextBox_Password.Margin = new Thickness(40, -40, 0, 0);
+
+            Label_Name.Content = "Name";
+            Label_Name.Width = 80;
+            Label_Name.Height = 25;
+            Label_Name.Margin = new Thickness(-130, -100, 0, 0);
+
+            Label_Password.Content = "Password";
+            Label_Password.Width = 80;
+            Label_Password.Height = 25;
+            Label_Password.Margin = new Thickness(-130, -40, 0, 0);
+
+            RootGrid.Children.Add(Button_Login);
+            RootGrid.Children.Add(TextBox_Name);
+            RootGrid.Children.Add(TextBox_Password);
+            RootGrid.Children.Add(Label_Name);
+            RootGrid.Children.Add(Label_Password);
         }
     }
 }

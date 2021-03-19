@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,10 +35,32 @@ namespace WPF_BasicLoginApp
 
         private void LoginClicked(object sender, RoutedEventArgs e)
         {
-            if (TextBox_Password.Text.Length > 6)
+            if (TextBox_Name.Text.Length > 0)
             {
-
+                if (isValidPassword(TextBox_Password.Text))
+                {
+                    MessageBox.Show("Welcome back, " + TextBox_Name.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid password");
+                }
             }
+            else
+            {
+                MessageBox.Show("Invalid name");
+            }
+        }
+
+        bool isValidPassword(string input)
+        {
+            bool result = false;
+            Regex PasswordRegex = new Regex(@"^(?=.*\d).{6,}$");
+            if (PasswordRegex.IsMatch(input))
+            {
+                result = true;
+            }
+            return result;
         }
 
         private void GenerateControls()
